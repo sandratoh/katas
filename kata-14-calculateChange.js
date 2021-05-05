@@ -41,7 +41,7 @@ const calculateChange = (total, cash) => {
   };
 
   const addToChangeAmount = denomination => {
-    let changeValue = changeAmount[denomination].value;
+    const changeValue = changeAmount[denomination].value;
 
     if (change >= changeValue) {
       const num = Math.floor(change / changeValue);
@@ -61,7 +61,7 @@ const calculateChange = (total, cash) => {
   addToChangeAmount('nickel');
   addToChangeAmount('penny');
 
-  let result = {};
+  const result = {};
 
   for (let key in changeAmount) {
     if (changeAmount[key].amount !== 0) {
