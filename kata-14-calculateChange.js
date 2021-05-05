@@ -13,59 +13,36 @@ const calculateChange = (total, cash) => {
     penny: 0,
   };
 
-  if (change >= 2000) {
-    let num = Math.floor(change / 2000);
-    changeAmount.twentyDollar += num;
-    change -= 2000 * num;
-  }
+  const addToChangeAmount = changeUnit => {
+    const unitConversion = {
+      2000: 'twentyDollar',
+      1000: 'tenDollar',
+      500: 'fiveDollar',
+      200: 'twoDollar',
+      100: 'oneDollar',
+      25: 'quarter',
+      10: 'dime',
+      5: 'nickel',
+      1: 'penny',
+    };
 
-  if (change >= 1000) {
-    let num = Math.floor(change / 1000);
-    changeAmount.tenDollar += num;
-    change -= 1000 * num;
-  }
+    if (change >= changeUnit) {
+      const num = Math.floor(change / changeUnit);
+      changeAmount[unitConversion[changeUnit]] += num;
+      change -= changeUnit * num;
+    }
+    return change;
+  };
 
-  if (change >= 500) {
-    let num = Math.floor(change / 500);
-    changeAmount.fiveDollar += num;
-    change -= 500 * num;
-  }
-
-  if (change >= 200) {
-    let num = Math.floor(change / 200);
-    changeAmount.twoDollar += num;
-    change -= 200 * num;
-  }
-
-  if (change >= 100) {
-    let num = Math.floor(change / 100);
-    changeAmount.oneDollar += num;
-    change -= 100 * num;
-  }
-
-  if (change >= 25) {
-    let num = Math.floor(change / 25);
-    changeAmount.quarter += num;
-    change -= 25 * num;
-  }
-
-  if (change >= 10) {
-    let num = Math.floor(change / 10);
-    changeAmount.dime += num;
-    change -= 10 * num;
-  }
-
-  if (change >= 5) {
-    let num = Math.floor(change / 5);
-    changeAmount.nickel += num;
-    change -= 5 * num;
-  }
-
-  if (change >= 1) {
-    let num = Math.floor(change / 1);
-    changeAmount.penny += num;
-    change -= 1 * num;
-  }
+  addToChangeAmount(2000);
+  addToChangeAmount(1000);
+  addToChangeAmount(500);
+  addToChangeAmount(200);
+  addToChangeAmount(100);
+  addToChangeAmount(25);
+  addToChangeAmount(10);
+  addToChangeAmount(5);
+  addToChangeAmount(1);
 
   let result = {};
 
@@ -78,11 +55,11 @@ const calculateChange = (total, cash) => {
   return result;
 };
 
-console.log(calculateChange(1787, 2000)); // 213
+console.log(calculateChange(1787, 2000));
 // Output: { twoDollar: 1, dime: 1, penny: 3 }
 
-console.log(calculateChange(2623, 4000)); // 1377
+console.log(calculateChange(2623, 4000));
 // Output: { tenDollar: 1, twoDollar: 1, oneDollar: 1, quarter: 3, penny: 2 }
 
-console.log(calculateChange(501, 1000)); // 499
+console.log(calculateChange(501, 1000));
 // Output: { twoDollar: 2, quarter: 3, dime: 2, penny: 4 }
