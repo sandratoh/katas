@@ -2,42 +2,15 @@ const calculateChange = (total, cash) => {
   let change = cash - total;
 
   const changeAmount = {
-    twentyDollar: {
-      value: 2000,
-      amount: 0,
-    },
-    tenDollar: {
-      value: 1000,
-      amount: 0,
-    },
-    fiveDollar: {
-      value: 500,
-      amount: 0,
-    },
-    twoDollar: {
-      value: 200,
-      amount: 0,
-    },
-    oneDollar: {
-      value: 100,
-      amount: 0,
-    },
-    quarter: {
-      value: 25,
-      amount: 0,
-    },
-    dime: {
-      value: 10,
-      amount: 0,
-    },
-    nickel: {
-      value: 5,
-      amount: 0,
-    },
-    penny: {
-      value: 1,
-      amount: 0,
-    },
+    twentyDollar: { value: 2000, amount: 0 },
+    tenDollar: { value: 1000, amount: 0 },
+    fiveDollar: { value: 500, amount: 0 },
+    twoDollar: { value: 200, amount: 0 },
+    oneDollar: { value: 100, amount: 0 },
+    quarter: { value: 25, amount: 0 },
+    dime: { value: 10, amount: 0 },
+    nickel: { value: 5, amount: 0 },
+    penny: { value: 1, amount: 0 },
   };
 
   const addToChangeAmount = denomination => {
