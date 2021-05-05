@@ -2,53 +2,70 @@ const calculateChange = (total, cash) => {
   let change = cash - total;
 
   const changeAmount = {
-    twentyDollar: 0,
-    tenDollar: 0,
-    fiveDollar: 0,
-    twoDollar: 0,
-    oneDollar: 0,
-    quarter: 0,
-    dime: 0,
-    nickel: 0,
-    penny: 0,
+    twentyDollar: {
+      value: 2000,
+      amount: 0,
+    },
+    tenDollar: {
+      value: 1000,
+      amount: 0,
+    },
+    fiveDollar: {
+      value: 500,
+      amount: 0,
+    },
+    twoDollar: {
+      value: 200,
+      amount: 0,
+    },
+    oneDollar: {
+      value: 100,
+      amount: 0,
+    },
+    quarter: {
+      value: 25,
+      amount: 0,
+    },
+    dime: {
+      value: 10,
+      amount: 0,
+    },
+    nickel: {
+      value: 5,
+      amount: 0,
+    },
+    penny: {
+      value: 1,
+      amount: 0,
+    },
   };
 
-  const addToChangeAmount = changeUnit => {
-    const unitConversion = {
-      2000: 'twentyDollar',
-      1000: 'tenDollar',
-      500: 'fiveDollar',
-      200: 'twoDollar',
-      100: 'oneDollar',
-      25: 'quarter',
-      10: 'dime',
-      5: 'nickel',
-      1: 'penny',
-    };
+  const addToChangeAmount = denomination => {
+    let changeValue = changeAmount[denomination].value;
 
-    if (change >= changeUnit) {
-      const num = Math.floor(change / changeUnit);
-      changeAmount[unitConversion[changeUnit]] += num;
-      change -= changeUnit * num;
+    if (change >= changeValue) {
+      const num = Math.floor(change / changeValue);
+      changeAmount[denomination].amount += num;
+      change -= changeValue * num;
     }
     return change;
   };
 
-  addToChangeAmount(2000);
-  addToChangeAmount(1000);
-  addToChangeAmount(500);
-  addToChangeAmount(200);
-  addToChangeAmount(100);
-  addToChangeAmount(25);
-  addToChangeAmount(10);
-  addToChangeAmount(5);
-  addToChangeAmount(1);
+  addToChangeAmount('twentyDollar');
+  addToChangeAmount('tenDollar');
+  addToChangeAmount('fiveDollar');
+  addToChangeAmount('twoDollar');
+  addToChangeAmount('oneDollar');
+  addToChangeAmount('quarter');
+  addToChangeAmount('dime');
+  addToChangeAmount('nickel');
+  addToChangeAmount('penny');
 
   let result = {};
 
   for (let key in changeAmount) {
-    if (changeAmount[key] !== 0) {
-      result[key] = changeAmount[key];
+    if (changeAmount[key].amount !== 0) {
+      result[key] = changeAmount[key].amount;
     }
   }
 
