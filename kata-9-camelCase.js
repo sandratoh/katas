@@ -4,11 +4,9 @@ const camelCase = input => {
   let result = '';
 
   stringArr.map(string => {
-    if (string !== stringArr[0]) {
-      result += `${string[0].toUpperCase()}${string.slice(1)}`;
-    } else {
-      result += string;
-    }
+    string !== stringArr[0]
+      ? (result += `${string[0].toUpperCase()}${string.slice(1)}`)
+      : (result += string);
   });
 
   return result;
