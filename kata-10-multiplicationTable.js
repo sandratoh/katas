@@ -1,6 +1,7 @@
 const multiplicationTable = maxValue => {
   let output = {};
 
+  // Create row key with array of multiplication products
   for (let i = 1; i <= maxValue; i++) {
     output[`row${i}`] = [];
     for (let j = 1; j <= maxValue; j++) {
@@ -8,14 +9,19 @@ const multiplicationTable = maxValue => {
     }
   }
 
+  // Print out values in each row
+  let result = '';
+
   for (let row in output) {
     output[row].map(num => {
-      process.stdout.write(num + ' ');
+      num !== output[row].slice(-1)[0]
+        ? (result += `${num} `)
+        : (result += num);
     });
-    process.stdout.write('\n');
+    result += `\n`;
   }
 
-  return '';
+  return result;
 };
 
 console.log(multiplicationTable(1));
