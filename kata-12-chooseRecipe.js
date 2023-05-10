@@ -1,23 +1,22 @@
+const ingredientCheck = (bakery, ingredients) => {
+  for (let ingredient of ingredients) {
+    if (bakery.includes(ingredient)) {
+      return ingredient;
+    }
+  }
+  return null;
+};
+
 const chooseRecipe = function (bakeryA, bakeryB, recipes) {
   // Code here!
-  let result;
+  for (let recipe of recipes) {
+    const a = ingredientCheck(bakeryA, recipe.ingredients);
+    const b = ingredientCheck(bakeryB, recipe.ingredients);
 
-  bakeryA.forEach(a => {
-    recipes.forEach(recipe => {
-      let ingredientA;
-      if (recipe.ingredients.includes(a)) {
-        ingredientA = a;
-      }
-
-      bakeryB.forEach(b => {
-        if (recipe.ingredients.includes(b) && b !== ingredientA) {
-          result = recipe.name;
-        }
-      });
-    });
-  });
-
-  return result;
+    if (a && b && a !== b) {
+      return recipe.name;
+    }
+  }
 };
 
 let bakeryA = ['saffron', 'eggs', 'tomato paste', 'coconut', 'custard'];
@@ -58,5 +57,4 @@ recipes = [
 ];
 
 console.log(chooseRecipe(bakeryA, bakeryB, recipes));
-
 // Expected Output: Nima's Famous Dijon Raisins
